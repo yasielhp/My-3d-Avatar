@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import * as THREE from 'three'
 import { useGLTF, useAnimations, } from "@react-three/drei";
 
 export function Model({ ...props }) {
@@ -6,6 +7,7 @@ export function Model({ ...props }) {
   const { nodes, materials, animations } = useGLTF("/model.glb");
 
   const { actions } = useAnimations(animations, group);
+  console.log(materials["Wolf3D_Teeth.001"].emissive)
 
   useEffect(() => {
       actions['Armature|mixamo.com|Layer0'].play();
@@ -44,7 +46,7 @@ export function Model({ ...props }) {
             morphTargetDictionary={nodes.Wolf3D_Head.morphTargetDictionary}
             morphTargetInfluences={nodes.Wolf3D_Head.morphTargetInfluences}
           />
-          <skinnedMesh
+      <skinnedMesh
             name="Wolf3D_Hair"
             geometry={nodes.Wolf3D_Hair.geometry}
             material={materials["Wolf3D_Hair.001"]}
@@ -70,10 +72,11 @@ export function Model({ ...props }) {
             material={materials["Wolf3D_Outfit_Top.001"]}
             skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
           />
-          <skinnedMesh
-            name="Wolf3D_Body"
-            geometry={nodes.Wolf3D_Body.geometry}
-            material={materials["Wolf3D_Body.001"]}
+      <skinnedMesh
+        onClick={(e) => console.log('click')}
+        name="Wolf3D_Body"
+        geometry={nodes.Wolf3D_Body.geometry}
+        material={materials["Wolf3D_Body.001"]}
             skeleton={nodes.Wolf3D_Body.skeleton}
           />
           <skinnedMesh
@@ -81,7 +84,7 @@ export function Model({ ...props }) {
             geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
             material={materials["Wolf3D_Outfit_Bottom.001"]}
             skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
-          />
+      />
     </group>
   );
 }
