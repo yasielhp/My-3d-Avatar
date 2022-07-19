@@ -3,7 +3,7 @@ import { useGLTF, useAnimations, } from "@react-three/drei";
 
 export function Model({ ...props }) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF("/model.glb");
+  const { nodes, materials, animations } = useGLTF("./assets/model.glb");
 
   const { actions } = useAnimations(animations, group);
 
@@ -87,4 +87,4 @@ export function Model({ ...props }) {
   );
 }
 
-useGLTF.preload("/model.glb");
+useGLTF.preload("./assets/model.glb");
