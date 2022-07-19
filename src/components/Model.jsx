@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import * as THREE from 'three'
 import { useGLTF, useAnimations, } from "@react-three/drei";
 
 export function Model({ ...props }) {
@@ -7,11 +6,10 @@ export function Model({ ...props }) {
   const { nodes, materials, animations } = useGLTF("/model.glb");
 
   const { actions } = useAnimations(animations, group);
-  console.log(materials["Wolf3D_Teeth.001"].emissive)
 
   useEffect(() => {
       actions['Armature|mixamo.com|Layer0'].play();
-   });
+  });
 
   return (
     <group ref={group} {...props} dispose={null}>
